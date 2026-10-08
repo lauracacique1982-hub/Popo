@@ -1,0 +1,21 @@
+ - name: Verify RDP Accessibility
+        run: |
+          Write-Host "Tailscale IP: $env:TAILSCALE_IP"
+          $testResult = Test-NetConnection -ComputerName $env:TAILSCALE_IP
+          if (-not $testResult.TcpTestSucceeded) {
+            exit 1
+          }
+          Write-Host "TCP connectivity successful!"
+
+      - name: Maintain Connection
+        run: |
+          Write-Host "`n=== RDP ACCESS ==="
+          Write-Host "Address: $env:TAILSCALE_IP"
+          Write-Host "Username: YamzzOfficial"
+          Write-Host "Password: YamzzOfficial@123"
+          Write-Host "================`n"
+
+          while ($true) {
+            Write-Host "[$(Get-Date)] RDP Active"
+            Start-Sleep -Seconds 300
+          }
